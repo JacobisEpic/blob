@@ -1,14 +1,10 @@
-# StockShouts
+# blob
 
-A minimalist social media web app for sharing stock market takes. Built with Next.js, TypeScript, Tailwind CSS, and Supabase.
+A minimalist social media web app
 
 ## Features
 
-- User authentication (email/password)
-- Post "shouts" about stocks
-- Upvote system
-- Automatic stock ticker highlighting
-- Mobile-friendly design
+- to be decided
 
 ## Tech Stack
 
@@ -79,7 +75,3 @@ A minimalist social media web app for sharing stock market takes. Built with Nex
 ## Deployment
 
 The app is configured for deployment on Vercel. Simply push to your repository and connect it to Vercel for automatic deployments.
-
-## License
-
-MIT
