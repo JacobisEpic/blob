@@ -9,47 +9,56 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      shouts: {
+      blobs: {
         Row: {
           id: string
-          created_at: string
           content: string
+          color: string | null
+          mood: string | null
+          created_at: string
+          expires_at: string
           user_id: string
-          upvotes: number
+          like_count: number
         }
         Insert: {
           id?: string
-          created_at?: string
           content: string
+          color?: string | null
+          mood?: string | null
+          created_at?: string
+          expires_at: string
           user_id: string
-          upvotes?: number
+          like_count?: number
         }
         Update: {
           id?: string
-          created_at?: string
           content?: string
+          color?: string | null
+          mood?: string | null
+          created_at?: string
+          expires_at?: string
           user_id?: string
-          upvotes?: number
+          like_count?: number
         }
       }
-      votes: {
+      blob_likes: {
         Row: {
           id: string
-          created_at: string
+          blob_id: string
           user_id: string
-          shout_id: string
+          created_at: string
         }
         Insert: {
           id?: string
-          created_at?: string
+          blob_id: string
           user_id: string
-          shout_id: string
+          created_at?: string
         }
         Update: {
           id?: string
-          created_at?: string
+          blob_id?: string
           user_id?: string
-          shout_id?: string
+          created_at?: string
         }
       }
     }
@@ -57,7 +66,10 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      clean_expired_blobs: {
+        Args: Record<PropertyKey, never>
+        Returns: void
+      }
     }
     Enums: {
       [_ in never]: never
