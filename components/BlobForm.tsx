@@ -33,18 +33,18 @@ export function BlobForm() {
         return
       }
 
-      // Check if user has posted in the last hour
-      const oneHourAgo = new Date()
-      oneHourAgo.setHours(oneHourAgo.getHours() - 1)
+      // Check if user has posted in the current minute
+      const currentMinute = new Date()
+      currentMinute.setSeconds(0, 0)
 
       const { data: recentBlobs } = await supabase
         .from('blobs')
         .select('id')
         .eq('user_id', session.session.user.id)
-        .gte('created_at', oneHourAgo.toISOString())
+        .gte('created_at', currentMinute.toISOString())
 
       if (recentBlobs && recentBlobs.length > 0) {
-        setError('You can only post one blob per hour')
+        setError('You can only post one blob per minute')
         return
       }
 
@@ -53,8 +53,7 @@ export function BlobForm() {
         .from('blobs')
         .insert({
           content: content.trim(),
-          user_id: session.session.user.id,
-          expires_at: addHours(new Date(), 1).toISOString()
+          user_id: session.session.user.id
         })
 
       if (insertError) throw insertError

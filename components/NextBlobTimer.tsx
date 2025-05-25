@@ -11,22 +11,21 @@ export function NextBlobTimer() {
   useEffect(() => {
     const updateTimer = () => {
       const now = new Date()
-      const nextHour = new Date(now)
-      nextHour.setUTCHours(now.getUTCHours() + 1, 0, 0, 0)
+      const nextMinute = new Date(now)
+      nextMinute.setUTCMinutes(now.getUTCMinutes() + 1, 0, 0)
       
-      const diff = nextHour.getTime() - now.getTime()
-      const minutes = Math.floor(diff / (1000 * 60))
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000)
-      setTimeLeft(`${minutes}:${seconds.toString().padStart(2, '0')}`)
+      const diff = nextMinute.getTime() - now.getTime()
+      const seconds = Math.floor(diff / 1000)
+      setTimeLeft(`${seconds}s`)
 
-      // If we just hit the hour mark, trigger a page reload
-      if (minutes === 0 && seconds === 0) {
+      // If we just hit the minute mark, trigger a page reload
+      if (seconds === 0) {
         window.location.reload()
       }
     }
 
     updateTimer()
-    const interval = setInterval(updateTimer, 1000)
+    const interval = setInterval(updateTimer, 100) // Update more frequently for smoother countdown
     return () => clearInterval(interval)
   }, [])
 
