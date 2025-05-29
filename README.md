@@ -72,6 +72,3 @@ A minimalist social media web app
 
 6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Deployment
-
-The app is configured for deployment on Vercel. Simply push to your repository and connect it to Vercel for automatic deployments.
